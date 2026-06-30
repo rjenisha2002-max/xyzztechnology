@@ -8,6 +8,7 @@ namespace AssetMgmt_WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "Bearer")]
+    [ApiExplorerSettings(IgnoreApi = true)]//to ignore the api------->reference data
     public class ReferenceDataController : ControllerBase
     {
         private readonly IReferenceDataService _referenceDataService;

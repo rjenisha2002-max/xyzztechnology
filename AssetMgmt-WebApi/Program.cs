@@ -38,7 +38,7 @@ namespace AssetMgmt_WebApi
             builder.Services.AddScoped<IAssetMasterRepository, AssetMasterRepositoryImpl>();
             builder.Services.AddScoped<IAssetMasterService, AssetMasterServiceImpl>();
 
-            
+
             builder.Services.AddScoped<IReferenceDataRepository, ReferenceDataRepositoryImpl>();
             builder.Services.AddScoped<IReferenceDataService, ReferenceDataServiceImpl>();
 
@@ -62,12 +62,22 @@ namespace AssetMgmt_WebApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "Enter 'Bearer {token}'"
+                    Description = "Enter your JWT token here (without the word 'Bearer')."
                 };
                 opt.AddSecurityDefinition("Bearer", securityScheme);
                 opt.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { securityScheme, new[] { "Bearer" } }
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
                 });
             });
 
