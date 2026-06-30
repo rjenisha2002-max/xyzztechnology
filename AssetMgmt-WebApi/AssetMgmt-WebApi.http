@@ -1,0 +1,84 @@
+@baseUrl = https://localhost:7000/api
+
+### Register a new user (Module A)
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "pmanager1",
+  "password": "Pass@123",
+  "userType": "Purchase Manager",
+  "firstName": "Priya",
+  "lastName": "Menon",
+  "age": 29,
+  "gender": "Female",
+  "address": "Kochi, Kerala",
+  "phoneNumber": "9876512345"
+}
+
+### Login (Module A)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin@123"
+}
+
+### Get all asset types (Module B)
+GET {{baseUrl}}/referencedata/asset-types
+Authorization: Bearer {{token}}
+
+### Get eligible Purchase Orders for asset creation (Module D)
+GET {{baseUrl}}/referencedata/purchase-orders/eligible
+Authorization: Bearer {{token}}
+
+### Create a new asset (Module E)
+POST {{baseUrl}}/assets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "amAtypeId": 1,
+  "amMakeId": 1,
+  "amAdId": 3,
+  "amModel": "Galaxy A14",
+  "amSnumber": "SN-MOB-1001",
+  "amMyyear": "2025",
+  "amPdate": "2025-01-20",
+  "amWarranty": "Y",
+  "amFrom": "2025-01-20",
+  "amTo": "2027-01-20",
+  "amPurchaseOrderId": 1
+}
+
+### Get all assets (Module E)
+GET {{baseUrl}}/assets
+Authorization: Bearer {{token}}
+
+### Search assets (Module E)
+GET {{baseUrl}}/assets/search?keyword=mobile
+Authorization: Bearer {{token}}
+
+### Update an asset (Module E)
+PUT {{baseUrl}}/assets/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "amAtypeId": 1,
+  "amMakeId": 1,
+  "amAdId": 3,
+  "amModel": "Galaxy A14 Updated",
+  "amSnumber": "SN-MOB-1001",
+  "amMyyear": "2025",
+  "amPdate": "2025-01-20",
+  "amWarranty": "Y",
+  "amFrom": "2025-01-20",
+  "amTo": "2027-01-20",
+  "amPurchaseOrderId": 1
+}
+
+### Delete an asset (Module E - Admin only)
+DELETE {{baseUrl}}/assets/1
+Authorization: Bearer {{token}}

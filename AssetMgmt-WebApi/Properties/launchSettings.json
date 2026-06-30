@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "AssetMgmt-WebApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51777;http://localhost:51779"
+    }
+  }
+}

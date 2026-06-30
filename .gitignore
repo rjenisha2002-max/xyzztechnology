@@ -1,0 +1,10 @@
+.vs/
+*.db
+*.db-shm
+*.db-wal
+bin/
+obj/
+node_modules/
+dist/
+.angular/
+.github/copilot-instructions.md
